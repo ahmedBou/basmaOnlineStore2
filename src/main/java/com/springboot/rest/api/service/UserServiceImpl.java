@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService{
         UserEntity userEntity = userRepository.findByEmail(email);
 
         if (userEntity == null) throw new UsernameNotFoundException("Email not found !");
-        List<RoleEntity> roleEntity1 = roleRepository.findByUser(userEntity);
+        List<RoleEntity> roleEntity1 = roleRepository.findByUsers(userEntity);
         UserDetails user = User.withUsername(
                 userEntity.getEmail())
                 .password(userEntity.getEncryptedPassword())

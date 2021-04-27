@@ -80,7 +80,7 @@ public class ProductServiceImpl implements ProductService {
 
             for (MultipartFile image : images) {
                 // Upload image to the server
-                fileOutputStream = new FileOutputStream("C:/Users/Sofia/Desktop/" + imageNames.get(counter));
+                fileOutputStream = new FileOutputStream("C:/Users/Admin/Desktop/" + imageNames.get(counter));
                 fileOutputStream.write(image.getBytes());
 
                 counter++;

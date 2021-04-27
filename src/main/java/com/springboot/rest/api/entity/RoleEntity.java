@@ -4,9 +4,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,8 +29,6 @@ public class RoleEntity implements Serializable {
     @Column(nullable = false)
     private String roleName;
 
-
-    @OneToOne
-    private UserEntity user;
-
+    @ManyToMany(mappedBy = "roles")
+    private Collection<UserEntity> users;
 }

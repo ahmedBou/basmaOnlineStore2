@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface RoleRepository extends JpaRepository<RoleEntity, UUID> {
     RoleEntity findByRoleName(String roleName);
 
-    List<RoleEntity> findByUser(UserEntity userEntity);
+    List<RoleEntity> findByUsers(UserEntity userEntity);
 }
 
 

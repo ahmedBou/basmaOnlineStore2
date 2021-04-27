@@ -7,6 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.management.relation.Role;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +37,15 @@ public class UserEntity implements Serializable {
     @Column(nullable = false, length = 60)
     private String encryptedPassword;
 
-    @OneToOne
-    private RoleEntity roles;
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<RoleEntity> roles;
+
+
 }
