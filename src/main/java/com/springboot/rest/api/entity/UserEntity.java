@@ -1,15 +1,13 @@
 package com.springboot.rest.api.entity;
 
-import com.sun.istack.Nullable;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.management.relation.Role;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 @Setter
 @Getter
@@ -38,14 +36,9 @@ public class UserEntity implements Serializable {
     private String encryptedPassword;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private Collection<RoleEntity> roles;
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private RoleEntity role;
 
 
 }

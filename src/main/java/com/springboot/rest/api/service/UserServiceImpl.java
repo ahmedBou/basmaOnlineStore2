@@ -74,11 +74,11 @@ public class UserServiceImpl implements UserService{
         UserEntity userEntity = userRepository.findByEmail(email);
 
         if (userEntity == null) throw new UsernameNotFoundException("Email not found !");
-        List<RoleEntity> roleEntity1 = roleRepository.findByUsers(userEntity);
+        List<RoleEntity> roleEntity1 = userRepository.findByRoles(userEntity);
         UserDetails user = User.withUsername(
                 userEntity.getEmail())
                 .password(userEntity.getEncryptedPassword())
-                .roles(roleEntity1.get(0).getRoleName())
+                .roles(roleEntity1.toString())
                 .build();
 
         return user;
